@@ -25,40 +25,22 @@ pub fn run() -> tauri::Result<AppHandle<Wry>> {
                 thread::sleep(Duration::from_millis(100));
             }
 
-            // 使用随机生成的窗口标识符
-            let window_label = format!("main_{}", chrono::Utc::now().timestamp_millis());
-            
-            let win_builder =
-                WebviewWindowBuilder::new(app, window_label, WebviewUrl::default())
-                    .inner_size(800.0, 600.0)
-                    .title("开发工具集")
-                    .focused(true);  // 确保窗口获得焦点
-            
-            // 仅在 macOS 时设置透明标题栏
-            #[cfg(target_os = "macos")]
-            let win_builder = win_builder.title_bar_style(TitleBarStyle::Transparent);
-            
-            let window = match win_builder.build() {
-                Ok(window) => {
-                    // 确保窗口在前台显示
-                    window.set_focus().unwrap_or_else(|e| eprintln!("Failed to set focus: {}", e));
-                    window
-                },
-                Err(e) => {
-                    eprintln!("Failed to create window: {}", e);
-                    return Ok(());
-                }
-            };
-            
+            // 创建主窗口
+            let window = WebviewWindowBuilder::new(app, "main", WebviewUrl::default())
+                .inner_size(800.0, 600.0)
+                .title("开发工具集")
+                .focused(true)
+                .title_bar_style(TitleBarStyle::Transparent)
+                .build()?;
+
             // 仅在 macOS 时设置背景颜色
             #[cfg(target_os = "macos")]
             {
-                match window.ns_window() {
-                    Ok(ns_window) => unsafe {
+                if let Ok(ns_window) = window.ns_window() {
+                    unsafe {
                         let ns_window = ns_window as id;
                         let _: () = msg_send![ns_window, setBackgroundColor: NSColor::clearColor(nil)];
-                    },
-                    Err(e) => eprintln!("Failed to get ns_window: {}", e)
+                    }
                 }
             }
 
