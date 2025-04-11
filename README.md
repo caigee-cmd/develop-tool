@@ -20,6 +20,9 @@
   <a href="#">
     <img src="https://img.shields.io/badge/版本-0.1.0-blue?style=flat-square" alt="版本" />
   </a>
+  <a href="docs/macOS安装问题解决指南.md">
+    <img src="https://img.shields.io/badge/macOS指南-查看-orange?style=flat-square" alt="macOS指南" />
+  </a>
 </div>
 
 一个基于 Tauri 2.0 构建的JSON编辑和处理工具，集成了vanilla-jsoneditor组件，支持JSON数据的编辑、格式化和编辑。
@@ -129,7 +132,7 @@ npm run tauri build
 您可以从[发行版页面](https://gitee.com/您的用户名/develop-tool/releases)下载最新的预构建版本：
 
 - **Windows**: 下载并运行 `.exe` 或 `.msi` 安装程序
-- **macOS**: 下载 `.dmg` 文件，打开并将应用拖到应用程序文件夹
+- **macOS**: 下载 `.dmg` 文件，打开并将应用拖到应用程序文件夹（[安装问题？点击这里](docs/macOS安装问题解决指南.md)）
 - **Linux**: 下载适用于您发行版的包 (`.deb`, `.rpm`, `.AppImage`)
 
 #### macOS用户注意事项
@@ -271,5 +274,6 @@ MIT许可证是一种宽松的软件许可证，简单来说：
 - 提交 [Issues](https://github.com/您的用户名/develop-tool/issues)
 - 发送邮件至：[您的邮箱]
 - 加入QQ群：[QQ群号]
+- macOS用户可查阅[安装问题解决指南](docs/macOS安装问题解决指南.md)
 
 我们会尽快回复您的问题和建议。
