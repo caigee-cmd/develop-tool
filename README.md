@@ -6,7 +6,7 @@
 
 <div align="center">
   <a href="#">
-    <img src="https://img.shields.io/badge/平台-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey?style=flat-square" alt="平台" />
+    <img src="https://img.shields.io/badge/平台-macOS%20(已支持)%20%7C%20Windows%2FLinux%20(规划中)-lightgrey?style=flat-square" alt="平台" />
   </a>
   <a href="LICENSE">
     <img src="https://img.shields.io/badge/许可证-MIT-green?style=flat-square" alt="许可证" />
@@ -59,7 +59,7 @@
 
 - ✨ 基于强大的vanilla-jsoneditor组件的JSON编辑器
 - 📊 一键将JSON数据导出为Excel文件【规划中】
-- 💪 基于Tauri 2.0，提供跨平台支持（Windows、macOS、Linux）
+- 💪 基于Tauri 2.0构建，目前支持macOS，Windows和Linux版本正在规划中
 - 🚀 原生性能体验，轻量快速
 - 🔍 直观的JSON数据可视化
 
@@ -153,9 +153,13 @@ npm run tauri build
 
 您可以从[发行版页面](https://gitee.com/您的用户名/develop-tool/releases)下载最新的预构建版本：
 
-- **Windows**: 下载并运行 `.exe` 或 `.msi` 安装程序
 - **macOS**: 下载 `.dmg` 文件，打开并将应用拖到应用程序文件夹（[安装问题？点击这里](docs/macOS安装问题解决指南.md)）
-- **Linux**: 下载适用于您发行版的包 (`.deb`, `.rpm`, `.AppImage`)
+- **Windows**: 即将推出，敬请期待
+- **Linux**: 即将推出，敬请期待
+
+> **注意**: 目前仅提供macOS版本，Windows和Linux版本正在开发中，将在后续版本中发布。
+
+> **等不及了？** 如果您迫不及待想在Windows或Linux上使用，可以按照上方"从源码构建"的说明克隆仓库并自行打包。本项目基于Tauri 2.0构建，您可以参考[Tauri官方文档](https://tauri.app/distribute/)了解如何在不同平台上构建应用。通常只需执行`npm run tauri build`即可在您当前的操作系统上构建适用的安装包。
 
 #### macOS用户注意事项
 
