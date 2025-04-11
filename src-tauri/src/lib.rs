@@ -1,8 +1,10 @@
-use tauri::{TitleBarStyle, WebviewUrl, WebviewWindowBuilder, Manager, AppHandle};
+use tauri::{WebviewUrl, WebviewWindowBuilder, Manager, AppHandle};
 use tauri::Wry;
 #[cfg(target_os = "macos")]
 use objc::{msg_send, sel, sel_impl};
-use cocoa::appkit::NSColor;
+#[cfg(target_os = "macos")]
+use cocoa::appkit::NSColor; 
+#[cfg(target_os = "macos")]
 use cocoa::base::{id, nil};
 use std::{thread, time::Duration};
 
@@ -16,6 +18,8 @@ pub fn run() -> tauri::Result<AppHandle<Wry>> {
         .plugin(tauri_plugin_shell::init())
         .invoke_handler(tauri::generate_handler![commands::convert_json_to_excel])
         .setup(|app| {
+            #[cfg(target_os = "macos")]
+            {
             // 检查窗口是否已存在并尝试关闭
             if let Some(existing_window) = app.get_webview_window("main") {
                 if let Err(e) = existing_window.close() {
@@ -35,7 +39,7 @@ pub fn run() -> tauri::Result<AppHandle<Wry>> {
                     .focused(true);  // 确保窗口获得焦点
             
             // 仅在 macOS 时设置透明标题栏
-            #[cfg(target_os = "macos")]
+           
             let win_builder = win_builder.title_bar_style(TitleBarStyle::Transparent);
             
             let window = match win_builder.build() {
@@ -49,6 +53,7 @@ pub fn run() -> tauri::Result<AppHandle<Wry>> {
                     return Ok(());
                 }
             };
+        }
             
             // // 仅在 macOS 时设置背景颜色
             // #[cfg(target_os = "macos")]
