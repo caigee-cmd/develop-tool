@@ -151,7 +151,7 @@ npm run tauri build
 
 ### 使用预构建版本
 
-您可以从[发行版页面](https://gitee.com/您的用户名/develop-tool/releases)下载最新的预构建版本：
+您可以从[发行版页面](https://gitee.com/manyhtings/develop-tools/releases/tag/0.0.1)下载最新的预构建版本：
 
 - **macOS**: 下载 `.dmg` 文件，打开并将应用拖到应用程序文件夹（[安装问题？点击这里](docs/macOS安装问题解决指南.md)）
 - **Windows**: 即将推出，敬请期待
