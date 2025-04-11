@@ -4,6 +4,24 @@
   <img src="src-tauri/icons/128x128.png" alt="JSON处理工具图标" width="128" height="128">
 </div>
 
+<div align="center">
+  <a href="#">
+    <img src="https://img.shields.io/badge/平台-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey?style=flat-square" alt="平台" />
+  </a>
+  <a href="LICENSE">
+    <img src="https://img.shields.io/badge/许可证-MIT-green?style=flat-square" alt="许可证" />
+  </a>
+  <a href="#">
+    <img src="https://img.shields.io/badge/JSON编辑-支持-success?style=flat-square" alt="JSON编辑" />
+  </a>
+  <a href="#">
+    <img src="https://img.shields.io/badge/Excel导出-规划中-yellow?style=flat-square" alt="Excel导出" />
+  </a>
+  <a href="#">
+    <img src="https://img.shields.io/badge/版本-0.1.0-blue?style=flat-square" alt="版本" />
+  </a>
+</div>
+
 一个基于 Tauri 2.0 构建的JSON编辑和处理工具，集成了vanilla-jsoneditor组件，支持JSON数据的编辑、格式化和编辑。
 
 ## 应用截图
@@ -20,6 +38,16 @@
 - 🚀 原生性能体验，轻量快速
 - 🔍 直观的JSON数据可视化
 
+## 适用场景
+
+本工具适用于以下场景：
+
+- 💻 **开发调试**：快速查看、编辑和格式化API响应或配置文件
+- 🔧 **数据处理**：清理、转换或整理JSON数据结构
+- 📋 **配置管理**：编辑应用程序配置文件，确保符合正确的JSON格式
+- 📊 **数据分析**：查看复杂的JSON数据结构，导出为Excel进行进一步分析【规划中】
+- 🔍 **错误排查**：检查和修复JSON格式错误
+
 ## 技术栈
 
 - **前端**：React、TypeScript、Ant Design
@@ -27,6 +55,45 @@
 - **编辑器组件**：vanilla-jsoneditor (由svelte-jsoneditor提供)
 - **Excel处理**：xlsxwriter (Rust) 【规划中】
 
+## 详细技术栈
+
+本项目使用了以下优秀的开源组件和库：
+
+### 前端
+
+| 组件 | 版本 | 仓库/文档链接 | 说明 |
+| --- | --- | --- | --- |
+| [React](https://react.dev/) | ^18.2.0 | [GitHub](https://github.com/facebook/react) | 用户界面构建库 |
+| [TypeScript](https://www.typescriptlang.org/) | ^5.2.2 | [GitHub](https://github.com/microsoft/TypeScript) | JavaScript的类型化超集 |
+| [Ant Design](https://ant.design/) | ^5.22.3 | [GitHub](https://github.com/ant-design/ant-design) | 企业级UI设计语言和React组件库 |
+| [vanilla-jsoneditor](https://github.com/josdejong/svelte-jsoneditor) | ^2.3.2 | [GitHub](https://github.com/josdejong/vanilla-jsoneditor) | 强大的JSON编辑器组件 |
+
+### 桌面应用框架
+
+| 组件 | 版本 | 仓库/文档链接 | 说明 |
+| --- | --- | --- | --- |
+| [Tauri](https://tauri.app/) | ^2.0 | [GitHub](https://github.com/tauri-apps/tauri) | 构建更小、更快、更安全的桌面应用程序 |
+| [@tauri-apps/api](https://tauri.app/v1/api/js/) | ^2.0.1 | [GitHub](https://github.com/tauri-apps/tauri) | Tauri JS API |
+| [@tauri-apps/plugin-dialog](https://tauri.app/v1/api/js/dialog) | ^2.2.0 | [GitHub](https://github.com/tauri-apps/plugins-workspace/tree/v1/plugins/dialog) | 显示原生对话框 |
+| [@tauri-apps/plugin-fs](https://tauri.app/v1/api/js/fs) | ^2.2.0 | [GitHub](https://github.com/tauri-apps/plugins-workspace/tree/v1/plugins/fs) | 文件系统访问API |
+| [@tauri-apps/plugin-shell](https://tauri.app/v1/api/js/shell) | ^2 | [GitHub](https://github.com/tauri-apps/plugins-workspace/tree/v1/plugins/shell) | 执行系统命令 |
+
+### 构建工具
+
+| 组件 | 版本 | 仓库/文档链接 | 说明 |
+| --- | --- | --- | --- |
+| [Vite](https://vitejs.dev/) | ^5.3.1 | [GitHub](https://github.com/vitejs/vite) | 前端构建工具 |
+| [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react) | ^4.2.1 | [GitHub](https://github.com/vitejs/vite-plugin-react) | React插件 |
+
+### 后端 (Rust)
+
+| 组件 | 版本 | 仓库/文档链接 | 说明 |
+| --- | --- | --- | --- |
+| [serde](https://serde.rs/) | 1.0 | [GitHub](https://github.com/serde-rs/serde) | 序列化和反序列化框架 |
+| [serde_json](https://docs.serde.rs/serde_json/) | 1.0 | [GitHub](https://github.com/serde-rs/json) | JSON支持 |
+| [xlsxwriter](https://docs.rs/xlsxwriter/) | 0.6.0 | [GitHub](https://github.com/informationsea/xlsxwriter-rs) | Excel文件生成库【规划中】 |
+| [tempfile](https://docs.rs/tempfile/) | 3.10.1 | [GitHub](https://github.com/Stebalien/tempfile) | 临时文件创建 |
+| [chrono](https://docs.rs/chrono/) | 0.4 | [GitHub](https://github.com/chronotope/chrono) | 日期和时间库 |
 
 ## 安装和使用
 
@@ -148,9 +215,36 @@ MIT许可证是一种宽松的软件许可证，简单来说：
 
 ## 鸣谢
 
+<div align="center">
+  <a href="https://tauri.app">
+    <img src="https://img.shields.io/badge/Tauri-2.0-blue?style=for-the-badge" alt="Tauri" />
+  </a>
+  <a href="https://github.com/josdejong/svelte-jsoneditor">
+    <img src="https://img.shields.io/badge/vanilla--jsoneditor-2.3.2-orange?style=for-the-badge" alt="vanilla-jsoneditor" />
+  </a>
+  <a href="https://react.dev">
+    <img src="https://img.shields.io/badge/React-18.2.0-61DAFB?style=for-the-badge&logo=react" alt="React" />
+  </a>
+  <a href="https://ant.design">
+    <img src="https://img.shields.io/badge/Ant%20Design-5.22.3-0170FE?style=for-the-badge&logo=ant-design" alt="Ant Design" />
+  </a>
+  <a href="https://www.typescriptlang.org">
+    <img src="https://img.shields.io/badge/TypeScript-5.2.2-3178C6?style=for-the-badge&logo=typescript" alt="TypeScript" />
+  </a>
+  <a href="https://vitejs.dev">
+    <img src="https://img.shields.io/badge/Vite-5.3.1-646CFF?style=for-the-badge&logo=vite" alt="Vite" />
+  </a>
+</div>
+
+本项目依赖于以下优秀的开源项目：
+
 - [Tauri](https://tauri.app/) - 提供桌面应用程序框架
-- [vanilla-jsoneditor](https://github.com/josdejong/svelte-jsoneditor) - 提供强大的JSON编辑功能
-- [xlsxwriter](https://github.com/informationsea/xlsxwriter-rs) - 提供Excel文件创建功能
+- [vanilla-jsoneditor](https://github.com/josdejong/vanilla-jsoneditor) - 提供强大的JSON编辑功能
+- [React](https://react.dev/) - 用户界面构建库
+- [Ant Design](https://ant.design/) - 企业级UI设计语言和React组件库
+- [TypeScript](https://www.typescriptlang.org/) - JavaScript的类型化超集
+- [Vite](https://vitejs.dev/) - 前端构建工具
+- [xlsxwriter](https://github.com/informationsea/xlsxwriter-rs) - 提供Excel文件创建功能【规划中】
 
 ## 联系与支持
 
