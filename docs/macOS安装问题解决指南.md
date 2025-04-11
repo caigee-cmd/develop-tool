@@ -132,9 +132,8 @@
 
 如果以上方法都无法解决您的问题，请通过以下方式联系我们：
 
-- 发送邮件至：[您的支持邮箱]
-- 在Gitee上提交Issue：[Gitee仓库链接]
-- 加入QQ群获取实时帮助：[QQ群号]
+- 发送邮件至：[522caiji@163.com]
+- 在Gitee上提交Issue：[https://gitee.com/manyhtings/develop-tools/issues]
 
 ---
 
