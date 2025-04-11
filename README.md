@@ -30,7 +30,29 @@
 ## 应用截图
 
 <div align="center">
-  <img src="screenshots/app.png" alt="应用截图" width="800">
+  <h2>💡 直观强大的JSON处理体验</h2>
+  <p>基于vanilla-jsoneditor打造的现代化JSON编辑工具，兼具易用性和专业性</p>
+  <br>
+
+  <h3>📱 主界面</h3>
+  <p>强大易用的JSON编辑器界面，支持多种视图模式</p>
+  <kbd>
+    <img src="screenshots/app.png" alt="应用主界面" width="800">
+  </kbd>
+  <br><br>
+  
+  <h3>✏️ JSON编辑功能</h3>
+  <p>直观的树状视图编辑，轻松处理复杂JSON数据</p>
+  <kbd>
+    <img src="screenshots/image.png" alt="JSON编辑功能" width="800">
+  </kbd>
+  <br><br>
+  
+  <h3>📊 数据可视化展示</h3>
+  <p>清晰的数据结构展示，让JSON一目了然</p>
+  <kbd>
+    <img src="screenshots/image02.png" alt="数据可视化展示" width="800">
+  </kbd>
 </div>
 
 ## 功能特点
@@ -188,6 +210,11 @@ develop-tool/
 │   ├── Cargo.toml            # Rust依赖管理
 │   └── tauri.conf.json       # Tauri配置
 ├── screenshots/              # 应用截图（用于README展示）
+│   ├── app.png               # 主界面截图
+│   ├── image.png             # JSON编辑功能截图
+│   └── image02.png           # 数据可视化展示截图
+├── docs/                     # 文档目录
+│   └── macOS安装问题解决指南.md # macOS安装问题解决指南
 └── package.json              # 前端依赖管理
 ```
 
