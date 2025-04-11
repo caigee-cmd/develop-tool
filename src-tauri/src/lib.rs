@@ -31,7 +31,7 @@ pub fn run() -> tauri::Result<AppHandle<Wry>> {
             let win_builder =
                 WebviewWindowBuilder::new(app, window_label, WebviewUrl::default())
                     .inner_size(800.0, 600.0)
-                    .title("开发工具集")
+                    .title("Json Editor")
                     .focused(true);  // 确保窗口获得焦点
             
             // 仅在 macOS 时设置透明标题栏
@@ -50,17 +50,17 @@ pub fn run() -> tauri::Result<AppHandle<Wry>> {
                 }
             };
             
-            // 仅在 macOS 时设置背景颜色
-            #[cfg(target_os = "macos")]
-            {
-                match window.ns_window() {
-                    Ok(ns_window) => unsafe {
-                        let ns_window = ns_window as id;
-                        let _: () = msg_send![ns_window, setBackgroundColor: NSColor::clearColor(nil)];
-                    },
-                    Err(e) => eprintln!("Failed to get ns_window: {}", e)
-                }
-            }
+            // // 仅在 macOS 时设置背景颜色
+            // #[cfg(target_os = "macos")]
+            // {
+            //     match window.ns_window() {
+            //         Ok(ns_window) => unsafe {
+            //             let ns_window = ns_window as id;
+            //             let _: () = msg_send![ns_window, setBackgroundColor: NSColor::clearColor(nil)];
+            //         },
+            //         Err(e) => eprintln!("Failed to get ns_window: {}", e)
+            //     }
+            // }
 
             Ok(())
         })
