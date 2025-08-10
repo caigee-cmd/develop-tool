@@ -12,6 +12,8 @@
   "app": {
     "windows": [
       {
+        "label": "main",
+        "title": "Json Editor",
         "transparent": false,
         "decorations": true,
         "width": 800,

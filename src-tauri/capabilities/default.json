@@ -5,6 +5,15 @@
   "windows": ["main"],
   "permissions": [
     "core:default",
-    "shell:allow-open"
+    "shell:allow-open",
+    "dialog:allow-save",
+    "dialog:allow-open",
+    "fs:allow-desktop-write",
+    "fs:allow-desktop-write-recursive",
+    "fs:allow-document-write",
+    "fs:allow-document-write-recursive",
+    "fs:allow-download-write",
+    "fs:allow-download-write-recursive",
+    "fs:allow-home-write-recursive"
   ]
 }

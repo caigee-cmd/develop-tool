@@ -13,6 +13,7 @@
   flex: 1;
   overflow: hidden;
   text-align: left;
+  height: 100%;
 }
 
 .vanilla-jsoneditor-react {
@@ -40,6 +41,7 @@
 
   color: #0f0f0f;
   background-color: #f6f6f6;
+  --accent: #1677ff; /* theme color for active tab background */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -126,6 +128,7 @@ button {
   :root {
     color: #f6f6f6;
     background-color: #2f2f2f;
+    --accent: #1677ff; /* keep same primary in dark for consistency */
   }
 
   a:hover {
@@ -140,6 +143,205 @@ button {
   button:active {
     background-color: #0f0f0f69;
   }
+}
+
+/* make tabs fill full height */
+.tabs-wrap {
+  flex: 1;
+  min-height: 0;
+}
+.tabs-wrap .ant-tabs,
+.tabs-wrap .ant-tabs-content-holder,
+.tabs-wrap .ant-tabs-content,
+.tabs-wrap .ant-tabs-tabpane {
+  height: 100%;
+}
+
+/* make tabs and content seamless (no separation) */
+.tabs-wrap .ant-tabs-top > .ant-tabs-nav,
+.tabs-wrap .ant-tabs-nav {
+  margin: 0;
+  background: transparent;
+}
+.tabs-wrap .ant-tabs-top > .ant-tabs-nav::before {
+  border-bottom: 0 !important; /* remove bottom hairline */
+}
+.tabs-wrap .ant-tabs-card > .ant-tabs-nav .ant-tabs-tab {
+  background: transparent;
+  border: 0; /* remove card tab border */
+}
+.tabs-wrap .ant-tabs-card > .ant-tabs-nav .ant-tabs-tab-active {
+  background: transparent;
+}
+.tabs-wrap .ant-tabs-content-holder {
+  background: transparent;
+}
+
+/* remove JSON editor toolbar borders/shadows for full integration */
+.vanilla-jsoneditor-react .jse-navigation-bar,
+.vanilla-jsoneditor-react .jse-menu,
+.vanilla-jsoneditor-react .jse-main,
+.vanilla-jsoneditor-react .jse-contents {
+  box-shadow: none !important;
+  border: 0 !important;
+}
+.vanilla-jsoneditor-react .jse-navigation-bar {
+  margin: 0 !important;
+}
+
+/* compact tab height */
+.tabs-compact .ant-tabs-nav .ant-tabs-tab {
+  padding: 0 8px;
+  height: 24px;
+}
+.tabs-compact .ant-tabs-nav .ant-tabs-tab .ant-tabs-tab-btn {
+  font-size: 12px;
+  line-height: 24px;
+}
+.tabs-compact .ant-tabs-nav .ant-tabs-tab .ant-tabs-tab-remove {
+  margin-inline-start: 4px;
+  transform: scale(0.9);
+}
+.tabs-compact .ant-tabs-nav .ant-tabs-nav-add {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  color: var(--text);
+  opacity: 0.8;
+}
+
+/* remove borders/background from tab action buttons (add/close) */
+.tabs-compact .ant-tabs-nav .ant-tabs-nav-add,
+.tabs-compact .ant-tabs-nav .ant-tabs-tab-remove {
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.tabs-compact .ant-tabs-nav .ant-tabs-nav-operations,
+.tabs-compact .ant-tabs-nav .ant-tabs-nav-operations-hidden {
+  background: transparent !important;
+}
+.tabs-compact .ant-tabs-nav .ant-tabs-nav-operations button,
+.tabs-compact .ant-tabs-nav .ant-tabs-nav-operations .ant-tabs-nav-more,
+.tabs-compact .ant-tabs-nav .ant-tabs-nav-more,
+.tabs-compact .ant-tabs-nav .ant-tabs-tab-prev,
+.tabs-compact .ant-tabs-nav .ant-tabs-tab-next {
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.tabs-compact .ant-tabs-nav .ant-tabs-nav-operations button:hover,
+.tabs-compact .ant-tabs-nav .ant-tabs-nav-operations .ant-tabs-nav-more:hover,
+.tabs-compact .ant-tabs-nav .ant-tabs-nav-more:hover,
+.tabs-compact .ant-tabs-nav .ant-tabs-tab-prev:hover,
+.tabs-compact .ant-tabs-nav .ant-tabs-tab-next:hover {
+  background: transparent !important;
+}
+
+/* explicit style for the "more" button to be compact and flat */
+.tabs-compact .ant-tabs-nav .ant-tabs-nav-more {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: var(--text);
+  opacity: 0.8;
+}
+.tabs-compact .ant-tabs-nav .ant-tabs-nav-more:hover,
+.tabs-compact .ant-tabs-nav .ant-tabs-nav-more:active {
+  opacity: 1;
+}
+.tabs-compact .ant-tabs-nav .ant-tabs-nav-add:hover,
+.tabs-compact .ant-tabs-nav .ant-tabs-nav-add:active,
+.tabs-compact .ant-tabs-nav .ant-tabs-tab-remove:hover,
+.tabs-compact .ant-tabs-nav .ant-tabs-tab-remove:active {
+  background: transparent !important;
+  opacity: 1;
+}
+
+/* Tabs more dropdown: remove button (close) flatten */
+.ant-tabs-dropdown .ant-tabs-dropdown-menu-item-remove {
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: var(--text);
+  opacity: 0.8;
+}
+.ant-tabs-dropdown .ant-tabs-dropdown-menu-item-remove:hover,
+.ant-tabs-dropdown .ant-tabs-dropdown-menu-item-remove:active,
+.ant-tabs-dropdown .ant-tabs-dropdown-menu-item-remove:focus {
+  background: transparent !important;
+  opacity: 1;
+}
+
+/* compact the Tabs "more" dropdown menu */
+.ant-tabs-dropdown .ant-dropdown-menu,
+.ant-tabs-dropdown .ant-tabs-dropdown-menu {
+  padding: 4px 0 !important;
+  min-width: 140px;
+}
+.ant-tabs-dropdown .ant-dropdown-menu-item,
+.ant-tabs-dropdown .ant-tabs-dropdown-menu-item {
+  padding: 4px 8px !important;
+  font-size: 12px;
+  line-height: 20px;
+  min-height: 24px;
+}
+.ant-tabs-dropdown .ant-dropdown-menu-item .anticon,
+.ant-tabs-dropdown .ant-tabs-dropdown-menu-item .anticon {
+  font-size: 12px;
+  margin-inline-end: 6px;
+}
+.ant-tabs-dropdown .ant-tabs-dropdown-menu-item-remove {
+  width: 16px;
+  height: 16px;
+}
+
+/* align dropdown items and the trailing remove icon */
+.ant-tabs-dropdown .ant-dropdown-menu-item,
+.ant-tabs-dropdown .ant-tabs-dropdown-menu-item {
+  display: flex;
+  align-items: center;
+}
+.ant-tabs-dropdown .ant-dropdown-menu-item > .ant-tabs-dropdown-menu-item-remove,
+.ant-tabs-dropdown .ant-tabs-dropdown-menu-item > .ant-tabs-dropdown-menu-item-remove {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* make active tab more prominent */
+.tabs-compact .ant-tabs-nav .ant-tabs-tab .ant-tabs-tab-btn {
+  opacity: 0.75;
+  transition: opacity 0.15s ease;
+}
+.tabs-compact .ant-tabs-nav .ant-tabs-tab:hover .ant-tabs-tab-btn {
+  opacity: 0.9;
+}
+.tabs-compact .ant-tabs-nav .ant-tabs-tab-active .ant-tabs-tab-btn {
+  opacity: 1;
+  font-weight: 600;
+}
+
+/* active tab background as theme color */
+.tabs-compact .ant-tabs-nav .ant-tabs-tab-active {
+  background: var(--accent) !important;
+  border-radius: 4px;
+}
+.tabs-compact .ant-tabs-nav .ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #fff !important;
+}
+.tabs-compact .ant-tabs-nav .ant-tabs-tab-active .ant-tabs-tab-remove {
+  color: #fff !important;
 }
 
 .toolbar {

@@ -5,3 +5,48 @@
     flex: 1;
   }
   
+/* Remove borders and shadows to make the editor fully integrated with the page */
+.vanilla-jsoneditor-react .jse-navigation-bar,
+.vanilla-jsoneditor-react .jse-menu,
+.vanilla-jsoneditor-react .jse-status-bar,
+.vanilla-jsoneditor-react .jse-main,
+.vanilla-jsoneditor-react .jse-contents,
+.vanilla-jsoneditor-react .jse-text-mode,
+.vanilla-jsoneditor-react .jse-tree-mode,
+.vanilla-jsoneditor-react .jse-table-mode,
+.vanilla-jsoneditor-react .jse-outer,
+.vanilla-jsoneditor-react .jse-panel {
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Some builds add a hairline via pseudo elements */
+.vanilla-jsoneditor-react .jse-navigation-bar::before,
+.vanilla-jsoneditor-react .jse-navigation-bar::after,
+.vanilla-jsoneditor-react .jse-main::before,
+.vanilla-jsoneditor-react .jse-main::after {
+  content: none !important;
+}
+
+/* flatten toolbar buttons (including the ellipsis 'more' button) */
+.vanilla-jsoneditor-react .jse-navigation-bar .jse-button,
+.vanilla-jsoneditor-react .jse-navigation-bar .jse-button:hover,
+.vanilla-jsoneditor-react .jse-navigation-bar .jse-button:active,
+.vanilla-jsoneditor-react .jse-navigation-bar .jse-button:focus {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+/* sometimes the three-dots button has a specific class */
+.vanilla-jsoneditor-react .jse-navigation-bar .jse-menu-button,
+.vanilla-jsoneditor-react .jse-navigation-bar .jse-contextmenu-button {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+/* remove tiny separators next to toolbar groups */
+.vanilla-jsoneditor-react .jse-navigation-bar .jse-separator {
+  background: transparent !important;
+  border: 0 !important;
+}
+  
