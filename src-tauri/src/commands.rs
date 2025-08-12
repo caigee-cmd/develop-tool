@@ -2,7 +2,9 @@ use serde_json::Value;
 use xlsxwriter::Workbook;
 use tempfile::Builder;
 use std::fs::File;
-use std::io::Read;
+use std::io::{Read, Write};
+use std::path::PathBuf;
+use tauri::{AppHandle, Manager};
 
 #[tauri::command]
 pub fn convert_json_to_excel(json_data: &str) -> Result<Vec<u8>, String> {
@@ -67,3 +69,51 @@ pub fn convert_json_to_excel(json_data: &str) -> Result<Vec<u8>, String> {
 
     Ok(buffer)
 } 
+
+#[tauri::command]
+pub fn save_to_cache(app: AppHandle, tab_id: &str, content: &str) -> Result<String, String> {
+    let cache_dir = app
+        .path()
+        .app_cache_dir()
+        .map_err(|e| format!("获取应用缓存目录失败: {}", e))?;
+    std::fs::create_dir_all(&cache_dir)
+        .map_err(|e| format!("创建缓存目录失败: {}", e))?;
+
+    let mut file_path = PathBuf::from(&cache_dir);
+    let sanitized = tab_id.replace('/', "_").replace('\\', "_");
+    file_path.push(format!("tab-{}.json", sanitized));
+
+    let mut file = File::create(&file_path)
+        .map_err(|e| format!("创建缓存文件失败: {}", e))?;
+    file.write_all(content.as_bytes())
+        .map_err(|e| format!("写入缓存文件失败: {}", e))?;
+
+    Ok(file_path.to_string_lossy().to_string())
+}
+
+#[tauri::command]
+pub fn save_to_path(path: &str, content: &str) -> Result<(), String> {
+    let mut file = File::create(path)
+        .map_err(|e| format!("创建文件失败: {}", e))?;
+    file.write_all(content.as_bytes())
+        .map_err(|e| format!("写入文件失败: {}", e))?;
+    Ok(())
+}
+
+#[tauri::command]
+pub fn set_menu_enabled(app: AppHandle, save_enabled: bool, save_as_enabled: bool) -> Result<(), String> {
+    // try update by id; ignore if not found
+    if let Some(menu) = app.menu() {
+        if let Some(item) = menu.get("file-save") {
+            if let Some(mi) = item.as_menuitem() {
+                let _ = mi.set_enabled(save_enabled);
+            }
+        }
+        if let Some(item) = menu.get("file-save-as") {
+            if let Some(mi) = item.as_menuitem() {
+                let _ = mi.set_enabled(save_as_enabled);
+            }
+        }
+    }
+    Ok(())
+}
