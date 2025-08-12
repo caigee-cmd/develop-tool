@@ -11,6 +11,8 @@ import {
   EditOutlined,
   LockOutlined,
   UnlockOutlined,
+  FilterOutlined,
+  FileExcelOutlined,
 } from '@ant-design/icons';
 import './App.css';
 import VanillaJSONEditor from './VanillaJSONEditor';
@@ -82,6 +84,22 @@ function App() {
     const hasActive = Boolean(activeId);
     invoke('set_menu_enabled', { saveEnabled: hasActive, saveAsEnabled: hasActive });
   }, [activeId]);
+
+  // ensure there is always at least one tab
+  useEffect(() => {
+    if (tabs.length === 0) {
+      const first = createEmptyTab(1);
+      setTabs([first]);
+      setActiveId(first.id);
+    }
+  }, [tabs]);
+
+  // ensure there is always an active tab selected when tabs exist
+  useEffect(() => {
+    if (!activeId && tabs.length > 0) {
+      setActiveId(tabs[0].id);
+    }
+  }, [tabs, activeId]);
 
   const canAdd = tabs.length < maxTabs;
   const activeTab = useMemo(() => tabs.find(t => t.id === activeId) || tabs[0], [tabs, activeId]);
@@ -274,6 +292,13 @@ function App() {
       unsubs.push(await listen('menu:save-as', () => { saveAsCurrentTab(); }));
       unsubs.push(await listen('tools:extract', () => { openExtractModal(); }));
       unsubs.push(await listen('tools:json-to-excel', () => { runJsonToExcel(); }));
+      // edit actions forward to editor: try to delegate to active JSON editor (browser shortcuts already work, this is fallback)
+      unsubs.push(await listen('edit:undo', () => document.execCommand('undo')));
+      unsubs.push(await listen('edit:redo', () => document.execCommand('redo')));
+      unsubs.push(await listen('edit:cut', () => document.execCommand('cut')));
+      unsubs.push(await listen('edit:copy', () => document.execCommand('copy')));
+      unsubs.push(await listen('edit:paste', () => document.execCommand('paste')));
+      unsubs.push(await listen('edit:select-all', () => document.execCommand('selectAll')));
     })();
     return () => { unsubs.forEach((u) => { try { u(); } catch {} }); };
   }, [activeId, tabs]);
@@ -462,14 +487,10 @@ function App() {
             right: (
               <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                 <Tooltip title="字段提取">
-                  <Button type="text" size="small" onClick={openExtractModal}>
-                    提取
-                  </Button>
+                  <Button aria-label="字段提取" type="text" size="small" onClick={openExtractModal} icon={<FilterOutlined />} />
                 </Tooltip>
                 <Tooltip title="JSON 转 Excel">
-                  <Button type="text" size="small" onClick={runJsonToExcel}>
-                    导出
-                  </Button>
+                  <Button aria-label="JSON 转 Excel" type="text" size="small" onClick={runJsonToExcel} icon={<FileExcelOutlined />} />
                 </Tooltip>
               </div>
             )

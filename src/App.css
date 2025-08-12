@@ -1,5 +1,15 @@
 @import 'antd/dist/reset.css';
 
+html, body, #root {
+  height: 100%;
+  overflow: hidden; /* 禁用右侧全局滚动条 */
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
 .App {
   text-align: left;
   height: 100vh;
@@ -155,6 +165,11 @@ button {
 .tabs-wrap .ant-tabs-content,
 .tabs-wrap .ant-tabs-tabpane {
   height: 100%;
+}
+
+/* 防止 Tabs 内容区出现外层滚动条 */
+.tabs-wrap .ant-tabs-content-holder {
+  overflow: hidden;
 }
 
 /* make tabs and content seamless (no separation) */
