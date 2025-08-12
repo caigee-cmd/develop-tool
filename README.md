@@ -53,6 +53,12 @@
   <kbd>
     <img src="screenshots/image02.png" alt="数据可视化展示" width="800">
   </kbd>
+  <br><br>
+  <h3>🧰 多标签与字段提取 / JSON 转 Excel</h3>
+  <p>展示多标签栏、右侧工具按钮（提取/导出）、字段提取弹窗与直接导出 Excel 的流程</p>
+  <kbd>
+    <img src="screenshots/newfeature.png" alt="多标签与字段提取、JSON 转 Excel" width="800">
+  </kbd>
 </div>
 
 ## 功能特点
